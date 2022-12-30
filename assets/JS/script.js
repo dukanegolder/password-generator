@@ -4,6 +4,7 @@ var lowercaseChsr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 var symboleChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+
 function generatePassword() {
 
   var option = [];
@@ -19,6 +20,8 @@ function generatePassword() {
 
   var wantSymbole = confirm('Do you want symboles?')
 
+  var wantNumbers = confirm('Do you want numbers?')
+
   if (wantsUpper === true) {
     option = option.concat(uppercaseChar)
   }
@@ -31,12 +34,24 @@ function generatePassword() {
     option = option.concat(symboleChar)
   }
 
-  return
+  if (wantNumbers === true) {
+    option = option.concat(numbers)
+  }
+
+  let resultStr = '';
+
+  for (let i = 0; i < lengthOfPassword; i++) {
+    const randomIndex = Math.floor(Math.random() * option.length)
+    resultStr = resultStr + option[randomIndex];
+  }
+
+  console.log('resultString: ', resultStr);
+
+  return resultStr;
 }
 
 
 
-// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   console.log(password)
@@ -46,7 +61,7 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
+
 generateBtn.addEventListener("click", writePassword);
 
-console.log(Math.floor(Math.random() * uppercaseChar.length))
+
